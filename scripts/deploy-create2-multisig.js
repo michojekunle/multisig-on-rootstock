@@ -1,8 +1,8 @@
-// scripts/deploy.js
+// scripts/deploy-create2-multisig.js
 const main = async () => {
   // Get 'MultisigFactory' contract
   const multisigfactoryContractFactory = await hre.ethers.getContractFactory(
-    "MultisigFactory"
+    "MultisigFactoryCreate2"
   );
 
   const owners = [
@@ -21,14 +21,16 @@ const main = async () => {
     "✅ MultisigFactory Contract deployed to:",
     multisigfactoryContract.target
   );
-  console.log(
-    "⏳ Deploying Multisig contract with owners:",
+
+    console.log(
+    "\n⏳ Deploying Multisig contract with owners:",
     owners,
     "and quorum:",
     quorum
   );
+  //
   const deployMultisigCloneTx =
-    await multisigfactoryContract.deployMultisig(owners, quorum);
+    await multisigfactoryContract.createMultisigClone(owners, quorum);
   await deployMultisigCloneTx.wait();
 
   // get deployed multisigs
@@ -40,6 +42,8 @@ const main = async () => {
   const recentMultisigCloneAddress = multisigClones[multisigClones.length - 1];
 
   console.log("recent multisig address", recentMultisigCloneAddress);
+
+  
 };
 
 const runMain = async () => {
