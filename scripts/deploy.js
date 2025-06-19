@@ -13,7 +13,7 @@ const main = async () => {
   const multisigContract = await multisigContractFactory.deploy(owners, quorum);
   console.log("⏳ Deploying contract...");
   // Wait for the contract to be deployed
-  await multisigContract.deployed;
+  await multisigContract.waitForDeployment();
 
   console.log("✅ Contract deployed to:", multisigContract.target);
 };
