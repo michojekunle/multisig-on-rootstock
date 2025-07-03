@@ -15,7 +15,7 @@ const main = async () => {
   const multisigfactoryContract = await multisigfactoryContractFactory.deploy();
   console.log("⏳ Deploying MultisigFactory contract...");
   // Wait for the contract to be deployed
-  await multisigfactoryContract.deployed;
+  await multisigfactoryContract.waitForDeployment();
 
   console.log(
     "✅ MultisigFactory Contract deployed to:",
